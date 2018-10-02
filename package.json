@@ -1,0 +1,19 @@
+{
+  "name": "pupcoe-thesis-management-t6",
+  "version": "1.0.0",
+  "description": "Final Project DBMS",
+  "main": "app.js",
+  "scripts": {
+    "test": "start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Crein13/pupcoe-thesis-management-t6.git"
+  },
+  "author": "Matias - Mabandos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Crein13/pupcoe-thesis-management-t6/issues"
+  },
+  "homepage": "https://github.com/Crein13/pupcoe-thesis-management-t6#readme"
+}

@@ -1,0 +1,55 @@
+MODULE 8
+
+npm init
+git init
+set ignore files
+install dependencies
+create app boilerplate(optional: use express generator)
+
+1.)login feature
+-create login page *
+create user DB *
+-user
+   fname
+   laname
+   image_url
+   phone
+   password
+   type(student,faculty,guest)
+   is_admin
+-setup db connection *
+ https://www.diycode.cc/projects/brianc/node-postgres
+-integrate passport *
+-add admin page *
+
+add admin page
+integrate passport
+
+2.) Create user (Faculty and student)
+  -Faculty List page
+      create faculty form
+  -Student List page
+       create student form
+
+
+3.)Create Classes
+create class form
+class DB
+  batch
+  adviser(userId)
+  section(1,2,3,4,5,6,7,8,9,10)
+
+4.) Student and Faculty login
+-faculty can login
+  -class list page filtered by faculty (adviser)
+  -ckass page, see list of students in class
+-Student can login
+   -profile and 
+
+
+echo "# pupcoe-thesis-management-t18" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/cristolintan/pupcoe-thesis-management-t18.git
+git push -u origin master
