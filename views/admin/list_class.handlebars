@@ -1,0 +1,31 @@
+<div class="container">
+	<div class="row">	
+		<div class="responsive">
+			<div class="container col-sm-12 col-lg-12">
+				<table class="all_list" align="center">
+				<h1 style="margin-bottom:25pt display: inline-block">Classes</h1>
+				<a href="/admin/add_class" style="display:inline-block; float:right">Add Class</a>
+				<tr>
+					<th>ID</th>
+					<th>Batch</th>
+					<th>Section</th>
+					<th>Year Level</th>
+					<th>Adviser</th>
+					<th>Action</th>
+				</tr>
+				{{#each rows}}
+				<tr>
+					<td>{{class_id}}</td>
+					<td>{{this.batch}}</td>
+					<td>{{this.section}}</td>
+					<td>{{this.year_level}}</td>
+					<td>{{this.adviser}}</td>		
+					<td><a href="/admin/class/{{this.class_id}}">See More</a></td>
+				</tr>
+				{{/each}}
+				</table>
+			 </div>
+		</div>		
+	</div>
+</div>
+

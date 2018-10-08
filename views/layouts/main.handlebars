@@ -9,7 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <title>Team 6</title>
+    <title>Thesis Management</title>
 
 <style type="text/css">
 .container_pic {
@@ -81,23 +81,23 @@
     text-align: center;
 }
 
-/*Brand List*/
+/*All List*/
 
-.brand_list {
+.all_list {
     width: 100%;
     border-collapse: collapse;
 }
 
-.brand_list th, .brand_list td {
+.all_list th, .all_list td {
     text-align: left;
     padding: 8px;
     border: 1px solid black;
     border-collapse: collapse;
 }
 
-.brand_list tr:nth-child(even){background-color: #f2f2f2}
+.all_list tr:nth-child(even){background-color: #f2f2f2}
 
-.brand_list th {
+.all_list th {
     background-color: black;
     color: white;
 }
@@ -236,15 +236,96 @@
     }
 }
 
+/*  Sidebar Styles  */
+
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+ 
+.sidebar a.active {
+  background-color: #1b181a;
+  color: white;
+}
+
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+
+.nav-item .search-container {
+  float: right;
+}
+
+.nav-item .search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-item .search-container button {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+
+.body-content {
+    margin-left: 200px;
+    padding-top: 10px;
+}
 
 </style>
 
+<body>
 <nav class="navbar navbar-inverse navbar-expand-sm navbar-static-top mb-0" style="padding-left: 15pt; margin-bottom:-25pt" role="navigation">
-    <a class="navbar-brand" href="/"><img src="/images/teamsix.png" alt="Team 6" style="padding-top:0px; height:30px;" class="d-inline-block align-right"></a>
+    <a class="navbar-brand" href="/"><img src="/images/cpe_logo.png" alt="CpE Logo" style="padding:0px; height:30px;" class="d-inline-block align-right"></a>
     <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar3">
         <span class="navbar-toggle-icon"></span>
     </button>
-    <div class="navbar-collapse collapse" id="navbar3">
+    <!-- <div class="navbar-collapse collapse" id="navbar3">
         <ul class="nav navbar-nav nav-pills">
             <li><a data-toggle="pills" href="/">Products<span class="sr-only">(current)</span></a></li>
             <li><a data-toggle="pills" href="/brands">Brands<span class="sr-only">(current)</span></a></li>
@@ -257,21 +338,43 @@
             </li>
             <li><a data-toggle="pills" href="/admin">Administrator<span class="sr-only">(current)</span></a></li>
         </ul>
-        <ul class="nav navbar-nav navbar-right">
-        <li class="nav-item"><a class="nav-link" href="/login" style="padding-right: 30pt;"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-        </ul>
-    </div>
+        <div class="search-container">
+            <form class="form-inline" action="/action_page.php">
+                <input type="text" placeholder="Search.." name="search">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+    </div> -->
 </nav>
 
 </head>
-<br>
-<body>
 
+<div class="sidebar" style="padding-top: 30px"  id="sideb">
+  <h3><a class="side active" href="/admin">Dashboard</a></h3>
+  <a class="side" href="/admin/faculty">Faculties</a>
+  <a class="side" href="/admin/student">Students</a>
+  <a class="side" href="/admin/class">Classes</a>
+</div>
+
+<div class="body-content">
     {{{body}}}
-
+</div>
 <footer class="foot" style="z-index: 999999999;">
     <p class="text-muted">&copy; 2018-2019</p>
 </footer>
 </body>
 
 </html>
+
+<script>
+// Add active class to the current button (highlight it)
+var header = document.getElementById("sideb");
+var btns = header.getElementsByClassName("side");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
+</script>

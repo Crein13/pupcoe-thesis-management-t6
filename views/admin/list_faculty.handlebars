@@ -1,0 +1,31 @@
+<div class="container">
+	<div class="row">	
+		<div class="responsive">
+			<div class="container col-sm-12 col-lg-12">
+				<table class="all_list" align="center">
+				<h1 class="left" style="margin-bottom:25pt display: inline-block">Faculty Staff</h1>
+				<a href="/admin/add_faculty" style="display:inline-block; float:right;">Add Faculty</a>
+				<tr>
+					<th>Faculty ID</th>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Phone Number</th>
+					<th>Admin</th>
+					<th>Action</th>
+				</tr>
+				{{#each rows}}
+				<tr>
+					<td>{{faculty_id}}</td>
+					<td>{{this.first_name}} {{this.last_name}}</td>
+					<td>{{this.faculty_email}}</td>
+					<td>{{this.phone_number}}</td>
+					<td>{{this.admin_type}}</td>
+					<td><a href="/admin/faculty/{{this.faculty_id}}">See More</a></td>
+				</tr>
+				{{/each}}
+				</table>
+			 </div>
+		</div>		
+	</div>
+</div>
+

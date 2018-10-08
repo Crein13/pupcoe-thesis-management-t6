@@ -1,0 +1,54 @@
+<div class="container-fluid" style="padding: 20px 20px">
+  <div class="admin_faculty_header">
+    <h3 style="display: inline-block">ADD CLASS</h3>
+    <a href="/admin/classes" style="display:inline-block; float:right"><button class="btn btn-sm ml-auto">&laquo;&ensp;Go back</button></a>
+    <hr>
+  </div>
+  <div class="admin_add_faculty_form">
+    <form method="POST" action="/add_class">
+      <div class="row">
+        <div class="form-group col-md-8">
+          <label>Batch</label>
+          <select name="batch" class="form-control">
+          {{#each batches}}
+            <option value="{{this.id}}">{{this.batches}}</option>
+          {{/each}}
+          </select>
+        </div>
+        <div class="form-group col-md-8">
+          <label>Year Level</label>
+          <select name="year_level" class="form-control">
+          {{#each year_levels}}
+            <option value="{{this.id}}">{{this.year_levels}}</option>
+          {{/each}}
+          </select>
+        </div>
+        <div class="form-group col-md-8">
+          <label>Section</label>
+          <select name="section" class="form-control">
+          {{#each sections}}
+            <option value="{{this.id}}">{{this.sections}}</option>
+          {{/each}}
+          </select>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="form-group col-md-8">
+          <label><h4>Adviser</h4></label>
+          <select name="user_id" class="form-control">
+          {{#each faculties}}
+            <option value="{{this.id}}">{{this.fname}} {{this.lname}}</option>
+          {{/each}}
+          </select>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-8">
+          <input class="btn btn-md" type="submit" name="save" value="&plus;&ensp;Add Class"> 
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

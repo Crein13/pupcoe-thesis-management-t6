@@ -1,0 +1,54 @@
+<div class="container-fluid" style="padding: 20px 20px">
+  <h3 style="display: inline-block">ADD STUDENT</h3>
+  <a href="/admin/student" style="display:inline-block; float:right"><button class="btn btn-sm ml-auto">&laquo;&ensp;Go back</button></a>
+  <hr>
+  <div class="admin_add_faculty_form">
+    <form method="POST" action="/add_student">
+      <input type="text" name="user_type" value="student" hidden>
+      <input type="text" name="is_admin" value="false" hidden>
+      <input type="text" name="employee_id" value="none" hidden>
+      <div class="row">
+        <div class="form-group col-md-4">
+          <label>First Name</label>
+          <input type="text" name="fname" class="form-control" placeholder="Juan" required="">
+        </div>
+        <div class="form-group col-md-4">
+          <label>Last Name</label>
+          <input type="text" name="lname" class="form-control" placeholder="Pedro" required="">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-8">
+          <label>Student Number</label>
+          <input type="text" name="student_number" class="form-control" placeholder="2014-0123-4567" required="">
+        </div>
+        <div class="form-group col-md-8">
+          <label>Email</label>
+          <input type="email" name="email" class="form-control" placeholder="you@example.com" required="">
+        </div>
+        <div class="form-group col-md-8">
+          <label>Phone Number (Optional)</label>
+          <input type="text" name="phone" class="form-control" placeholder="+63 912 345 6789" required=""><br>
+        </div>
+      </div>
+      <div class="row">
+        <h4 style="padding: 5px 10px">Login Credentials</h4>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-8">
+          <label>Password</label>
+          <input type="text" name="password" class="form-control" placeholder="" required="">
+        </div>
+        <div class="form-group col-md-8">
+          <label>Confirm Password</label>
+          <input type="text" name="confirm_password" class="form-control" placeholder="" required=""><br>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+          <input class="btn btn-md" type="submit" name="add_student" value="Add Student"> 
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
