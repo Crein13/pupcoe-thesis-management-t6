@@ -19,9 +19,9 @@ var actions = {
     db.query(query)
       .then(res => callback(res.rows))
       .catch(e => {
-        console.log(e)
-        callback(e)
-      })
+        console.log(e);
+        callback(e);
+      });
   },
   createStudent: (studentData, callback) => {
     const query =
@@ -42,9 +42,9 @@ var actions = {
     db.query(query)
       .then(res => callback(res.rows))
       .catch(e => {
-        console.log(e)
-        callback(e)
-      })
+        console.log(e);
+        callback(e);
+      });
   },
   createUser: (userData,callback) => {
       const query =
