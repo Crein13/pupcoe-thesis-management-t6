@@ -5,9 +5,8 @@
     <hr>
   </div>
   <div class="admin_add_faculty_form">
-    <form method="POST" action="/add_faculty">
-      <input type="text" name="user_type" value="faculty" hidden>
-      <input type="text" name="student_number" value="none" hidden>
+    <form method="POST" action="/admin/add_faculty">
+      <input type="hidden" name="user_type" value="faculty">
       <div class="row">
         <div class="form-group col-md-4">
           <label>First Name</label>
@@ -25,10 +24,10 @@
         </div>
         <div class="form-group col-md-8">
           <label>Employee ID</label>
-          <input type="text" name="employee_id" class="form-control" placeholder="1234567890" required="">
+          <input type="text" name="employee_id" class="form-control" placeholder="1234567890">
         </div>
         <div class="form-group col-md-8">
-          <label>Phone Number (Optional)</label>
+          <label>Phone Number</label>
           <input type="text" name="phone" class="form-control" placeholder="+63 912 345 6789" required=""><br>
           {{!-- <input type="checkbox" name="user_type">&ensp;Make Admin? --}}
         </div>
@@ -46,6 +45,11 @@
           <input type="text" name="confirm_password" class="form-control" placeholder="" required=""><br>
         </div>
       </div>
+      <div class="checkbox mb-3">
+          <label>
+            <input type="checkbox" name="is_admin" value="faculty"> As Admin
+          </label>
+        </div>
       <div class="row">
         <div class="col-md-8">
           <input class="btn btn-md" type="submit" name="save" value="Add Faculty Member"> 

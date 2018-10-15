@@ -3,10 +3,9 @@
   <a href="/admin/student" style="display:inline-block; float:right"><button class="btn btn-sm ml-auto">&laquo;&ensp;Go back</button></a>
   <hr>
   <div class="admin_add_faculty_form">
-    <form method="POST" action="/add_student">
-      <input type="text" name="user_type" value="student" hidden>
-      <input type="text" name="is_admin" value="false" hidden>
-      <input type="text" name="employee_id" value="none" hidden>
+    <form method="POST" action="/admin/add_student">
+      <input type="hidden" name="user_type" value="student">
+      <input type="hidden" name="is_admin" value="false">
       <div class="row">
         <div class="form-group col-md-4">
           <label>First Name</label>
@@ -20,7 +19,7 @@
       <div class="row">
         <div class="form-group col-md-8">
           <label>Student Number</label>
-          <input type="text" name="student_number" class="form-control" placeholder="2014-0123-4567" required="">
+          <input type="text" name="student_number" class="form-control" placeholder="2014-01234-MN-0" required="">
         </div>
         <div class="form-group col-md-8">
           <label>Email</label>

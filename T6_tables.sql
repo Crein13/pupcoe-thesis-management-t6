@@ -1,61 +1,40 @@
-CREATE TABLE "admin" (
-  "admin_id" SERIAL PRIMARY KEY,
-  "fname" VARCHAR(100),
-  "lname" VARCHAR(100),
-  "email" VARCHAR(100),
-  "password" VARCHAR(100),
-  "user_type" VARCHAR(20),
-  "is_admin" BOOLEAN,
-  "phone" VARCHAR(100),
-  "employee_id" VARCHAR(100),
-  "student_number" VARCHAR(100)
-);
-
-CREATE TABLE "faculty" (
-  "faculty_id" SERIAL PRIMARY KEY,
-  "first_name" VARCHAR(80),
-  "last_name" VARCHAR(80),
-  "faculty_email" VARCHAR(100),
-  "phone_number" VARCHAR(100),
-  "password" VARCHAR(100)
-);
-
-CREATE TABLE "student" (
-  "student_id" SERIAL PRIMARY KEY,
-  "first_name" VARCHAR(80),
-  "last_name" VARCHAR(80),
-  "student_email" VARCHAR(100),
-  "phone_number" VARCHAR(100),
-  "password" VARCHAR(100)
-);
-
-CREATE TABLE "batches" (
-  "batch_id" SERIAL PRIMARY KEY,
-  "batches" INT
-);
-
-CREATE TABLE "class" (
-  "class_id" SERIAL PRIMARY KEY,
-  "batch_id" INT REFERENCES batches(id),
-  "year_level_id" INT REFERENCES year_levels(id),
-  "adviser_id" INT REFERENCES users(id),
-  "section_id" INT REFERENCES sections(id)
-);
-
-CREATE TABLE "year_levels" (
-  "id" SERIAL PRIMARY KEY,
-  "year_levels" VARCHAR(20)
-);
-
-CREATE TABLE "sections" (
-  "id" SERIAL PRIMARY KEY,
-  "sections" INT
-);
+CREATE TYPE user_type AS ENUM ('student', 'faculty', 'guest');
 
 CREATE TABLE "users" (
   "id" SERIAL PRIMARY KEY,
-  "admin_id" INT REFERENCES admin(admin_id),
-  "faculty_id" INT REFERENCES faculty(faculty_id),
-  "student_id" INT REFERENCES student(student_id),
-  "class_id" INT REFERENCES class(class_id)
+  "email" VARCHAR(80) NOT NULL,
+  "password" VARCHAR(80) NOT NULL,
+  "first_name" VARCHAR(80),
+  "last_name" VARCHAR(80) NOT NULL,
+  "student_number" VARCHAR(20),
+  "phone" VARCHAR(80),
+  "image_url" VARCHAR(200),
+  "user_type" user_type default 'student' NOT NULL,
+  "is_admin" boolean default 'f' NOT NULL
+);
+
+INSERT INTO users(first_name, last_name, email, password, phone, image_url, user_type, is_admin)
+  VALUES (
+    'Benjamin',
+    'Matias',
+    'benz.matias13@gmail.com',
+    '1234',
+    '',
+    '',
+    'faculty',
+    't'
+  );
+
+
+CREATE TABLE "classes" (
+  "id" SERIAL PRIMARY KEY,
+  "batch" VARCHAR(4) NOT NULL,
+  "section" VARCHAR(2) NOT NULL,
+  "adviser" INT REFERENCES users(id)
+);
+
+CREATE TABLE "classStudents" (
+  "id" SERIAL PRIMARY KEY,
+  "class_id" INT REFERENCES classes(id),
+  "student_id" INT REFERENCES users(id)
 );
