@@ -20,7 +20,6 @@ var actions = {
       .then(res => callback(res.rows))
       .catch(e => {
         console.log(e);
-        callback(e);
       });
   },
   createStudent: (studentData, callback) => {
@@ -42,7 +41,6 @@ var actions = {
       .then(res => callback(res.rows))
       .catch(e => {
         console.log(e);
-        callback(e);
       });
   },
   createUser: (userData,callback) => {
@@ -56,7 +54,6 @@ var actions = {
       .then(res => callback(res.rows))
       .catch(e => {
         console.log(e);
-        callback(e);
       })
     }, 
      createClass: (classData,callback) => {
@@ -70,7 +67,6 @@ var actions = {
       .then(res => callback(res.rows))
       .catch(e => {
         console.log(e);
-        callback(e);
       })
     },
     insertStudent: (userData,callback) => {
@@ -84,7 +80,6 @@ var actions = {
     .then(res => callback(res))
     .catch(e => {
       console.log(e);
-      callback(e);
     });
     },
     getByEmail: (email,callback) => {
@@ -122,7 +117,6 @@ var actions = {
     .then(res => callback(res.rows))
     .catch(e => {
       console.log(e);
-      callback(e);
     });
 
     },
@@ -139,7 +133,6 @@ var actions = {
     .then(res => callback(res.rows))
     .catch(e => {
       console.log(e);
-      callback(e);
     });
     },
     studentList: (filter,callback) => {
@@ -155,7 +148,6 @@ var actions = {
     .then(res => callback(res.rows))
     .catch(e => {
       console.log(e);
-      callback(e);
     });
     }
   }
