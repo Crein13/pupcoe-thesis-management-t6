@@ -141,7 +141,7 @@ var actions = {
     .catch(e => {
       console.log(e)
       callback(e)
-    })
+    });
     },
     studentList: (filter,callback) => {
     const query =
@@ -157,7 +157,7 @@ var actions = {
     .catch(e => {
       console.log(e)
       callback(e)
-    })
+    });
     }
   }
 module.exports = actions;
