@@ -234,8 +234,8 @@ app.post('/admin/add_faculty', function (req, res) {
 app.get('/admin/student', function (req, res) {
   admin.studentList({}, function(studentList) {
     res.render('admin/list_student', {
-    first_name: req.user.fname,
-    last_name: req.user.lname,
+    first_name: req.user.first_name,
+    last_name: req.user.last_name,
     email: req.user.email,
     phone: req.user.phone,
     user_type: req.user.user_type,
