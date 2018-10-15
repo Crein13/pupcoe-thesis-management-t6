@@ -4,7 +4,7 @@ var actions = {
   createFaculty: (facultyData, callback) => {
     const query =
     `INSERT INTO
-      users (first_name, last_name, email, phone, password, user_type)
+      users (first_name, last_name, email, phone, password, user_type, is_admin)
     VALUES
       (
       '${facultyData.first_name}',
@@ -35,8 +35,7 @@ var actions = {
       '${studentData.student_number}',
       '${studentData.phone}',
       '${studentData.password}',
-      '${studentData.user_type}',
-      '${studentData.is_admin ? true : false}')
+      '${studentData.user_type}')
       RETURNING *
     `;
     db.query(query)
