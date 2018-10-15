@@ -56,8 +56,8 @@ var actions = {
        db.query(query)
       .then(res => callback(res.rows))
       .catch(e => {
-        console.log(e)
-        callback(e)
+        console.log(e);
+        callback(e);
       })
     }, 
      createClass: (classData,callback) => {
@@ -70,8 +70,8 @@ var actions = {
        db.query(query)
       .then(res => callback(res.rows))
       .catch(e => {
-        console.log(e)
-        callback(e)
+        console.log(e);
+        callback(e);
       })
     },
     insertStudent: (userData,callback) => {
@@ -84,9 +84,9 @@ var actions = {
      db.query(query)
     .then(res => callback(res))
     .catch(e => {
-      console.log(e)
-      callback(e)
-    })
+      console.log(e);
+      callback(e);
+    });
     },
     getByEmail: (email,callback) => {
     const query =
@@ -94,7 +94,7 @@ var actions = {
      `;
      db.query(query)
     .then(res => callback(res.rows[0]))
-    .catch(e => callback(e))
+    .catch(e => callback(e));
    },
     getById: (id,callback) => {
     const query =
@@ -102,7 +102,7 @@ var actions = {
      `;
      db.query(query)
     .then(res => callback(res.rows[0]))
-      .catch(e => callback(e))
+      .catch(e => callback(e));
     },
     getGroupId: (id,callback) => {
     const query =
@@ -110,7 +110,7 @@ var actions = {
       group_members where user_id = ${id} `;
      db.query(query)
     .then(res => callback(res.rows[0]))
-      .catch(e => callback(e))
+      .catch(e => callback(e));
     },
     sectionList: (filter,callback) => {
     const query =
@@ -122,9 +122,9 @@ var actions = {
      db.query(query)
     .then(res => callback(res.rows))
     .catch(e => {
-      console.log(e)
-      callback(e)
-    })
+      console.log(e);
+      callback(e);
+    });
 
     },
     facultyList: (filter,callback) => {
@@ -139,8 +139,8 @@ var actions = {
      db.query(query)
     .then(res => callback(res.rows))
     .catch(e => {
-      console.log(e)
-      callback(e)
+      console.log(e);
+      callback(e);
     });
     },
     studentList: (filter,callback) => {
@@ -155,8 +155,8 @@ var actions = {
      db.query(query)
     .then(res => callback(res.rows))
     .catch(e => {
-      console.log(e)
-      callback(e)
+      console.log(e);
+      callback(e);
     });
     }
   }
