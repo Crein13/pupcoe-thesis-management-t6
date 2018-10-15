@@ -226,13 +226,14 @@ app.post('/admin/add_faculty', function (req, res) {
     phone: req.body.phone,
     password: req.body.password,
     user_type: req.body.user_type,
+    is_admin: req.body.is_admin
   });
 });
 
 /* -------- STUDENT --------- */
 app.get('/admin/student', function (req, res) {
   admin.studentList({}, function(studentList) {
-    res.render('admin/list_faculty', {
+    res.render('admin/list_student', {
     first_name: req.user.fname,
     last_name: req.user.lname,
     email: req.user.email,
