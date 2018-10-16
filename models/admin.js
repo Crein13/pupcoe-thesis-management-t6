@@ -17,10 +17,11 @@ var actions = {
       RETURNING *
     `;
     db.query(query)
-      .then(res => callback(res.rows))
+      .then(res => (res.rows))
       .catch(e => {
-        console.log(e);
-      });
+        console.log(e)
+        callback(e)
+      })
   },
   createStudent: (studentData, callback) => {
     const query =
@@ -106,17 +107,25 @@ var actions = {
     .then(res => callback(res.rows[0]))
       .catch(e => callback(e));
     },
-    sectionList: (filter,callback) => {
+    classList: (filter,callback) => {
     const query =
     `SELECT
-      id,section
-     FROM
-      class 
+      classes.id, classes.batch, classes.section,
+      users.first_name, users.last_name
+    FROM
+      classes
+    INNER JOIN
+      users
+    ON
+      classes.id = users.id
+    WHERE
+      users.user_type = 'faculty'
       `;
      db.query(query)
     .then(res => callback(res.rows))
     .catch(e => {
-      console.log(e);
+      console.log(e)
+      callback(e)
     });
 
     },

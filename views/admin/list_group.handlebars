@@ -4,26 +4,26 @@
 			<div class="container col-sm-12 col-lg-12">
 				<table class="all_list" align="center">
 				<h1 style="margin-bottom:25pt display: inline-block">Classes</h1>
-				<a href="/admin/add_class" style="display:inline-block; float:right">Add Class</a>
+				<a href="/admin/add_class" style="display:inline-block; float:right">Add Group</a>
 				<tr>
 					<th>ID</th>
 					<th>Batch</th>
 					<th>Section</th>
+					<th>Year Level</th>
 					<th>Adviser</th>
 					<th>Action</th>
 				</tr>
-				{{#each classes}}
+				{{#each rows}}
 				<tr>
-					<td>{{this.class_id}}</td>
-					<td>{{this.batch}}</td>
-					<td>{{this.section}}</td>
-					<td>{{this.first_name}} {{last_name}}</td>
-					<td><a href="/admin/class/{{this.class_id}}">See More</a></td>
+					<td>{{id}}</td>
+					<td>{{this.group_name}}</td>
+					<td>{{this.adviser_name}}</td>
+					<td><a href="/admin/group/{{this.id}}">See More</a></td>
 				</tr>
 				{{/each}}
 				</table>
 			 </div>
-		</div>
+		</div>		
 	</div>
 </div>
 

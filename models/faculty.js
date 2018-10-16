@@ -3,13 +3,10 @@ const db = require('../db/db.js')
 var actions = {
   classList: (filter,callback) => {
       const query =
-      `SELECT users.id as student_id, users.first_name,users.last_name,class.id as class_id
-      FROM class_members 
-    inner join users on users.id = class_members.user_id
-    inner join class ON class.id = class_members.class_id
-      WHERE class.adviser_id = '${filter.id}'
-      AND   class_members.user_id NOT IN 
-      (select user_id from group_members) `;
+      `SELECT users.id as student_id, users.first_name, users.last_name, classes.id as class_id
+      FROM classes 
+      inner join users on users.id = classes.id
+      WHERE classes.adviser = '${filter.id}' `;
        db.query(query)
       .then(res => callback(res.rows))
       .catch(e => {
@@ -19,7 +16,7 @@ var actions = {
     },
   classId: (filter,callback) => {
       const query =
-      `select id from class where adviser_id = ${filter.id} `;
+      `select id from class where adviser = ${filter.id} `;
        db.query(query)
       .then(res => callback(res.rows))
       .catch(e => {
@@ -37,11 +34,11 @@ var actions = {
         callback(e)
       })
     },
-    insertStudent: (userData,callback) => {
+  insertStudent: (userData, callback) => {
     const query =
     `INSERT INTO 
       class_members (class_id,user_id) 
-     VALUES 
+     VALUES
       ('${userData.classid}','${userData.userid}') 
       `;
      db.query(query)

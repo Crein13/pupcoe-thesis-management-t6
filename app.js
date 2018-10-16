@@ -234,6 +234,8 @@ app.post('/admin/add_faculty', function (req, res) {
 app.get('/admin/student', function (req, res) {
   admin.studentList({}, function(studentList) {
     res.render('admin/list_student', {
+    student_id: req.user.id,
+    student_number: req.user.student_number,
     first_name: req.user.first_name,
     last_name: req.user.last_name,
     email: req.user.email,
@@ -263,7 +265,16 @@ app.post('/admin/add_student', function (req, res) {
 
 /* -------- CLASS --------- */
 app.get('/admin/class', function (req, res) {
-  res.render('admin/list_class', {
+  admin.classList({}, function(classList) {
+    res.render('admin/list_class', {
+    class_id: req.user.id,
+    batch: req.user.batch,
+    section: req.user.section,
+    first_name: req.user.first_name,
+    last_name: req.user.last_name,
+    adviser: req.user.adviser,
+    classes: classList
+    });
   });
 });
 
@@ -272,32 +283,48 @@ app.get('/admin/add_class', function (req, res) {
   })
 })
 
+/* -------- GROUP --------- */
+app.get('/admin/group', function (req, res) {
+  res.render('admin/list_group', {
+  });
+});
+
+app.get('/admin/add_group', function (req, res) {
+  res.render('admin/add_group', {
+  })
+})
 
 /* ------------------------ FACULTY PAGE ------------------------ */
 app.get('/faculty', function (req, res) {
   res.render('faculty/dashboard', {
+    layout: 'faculty'
   });
 });
 
 /* -------- FACULTY --------- */
 app.get('/faculty/class', function (req, res) {
+
   res.render('faculty/list_my_class', {
+    layout: 'faculty'
   });
 });
 
 /* ------------------------ STUDENT PAGE ------------------------ */
 app.get('/student', function (req, res) {
   res.render('student/dashboard', {
+    layout: 'student'
   });
 });
 
 app.get('/student/class', function (req, res) {
   res.render('student/class', {
+    layout: 'student'
   });
 });
 
 app.get('/student/group', function (req, res) {
   res.render('student/group', {
+    layout: 'student'
   });
 });
 
