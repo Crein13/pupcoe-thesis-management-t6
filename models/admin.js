@@ -17,7 +17,7 @@ var actions = {
       RETURNING *
     `;
     db.query(query)
-      .then(res => (res.rows))
+      .then(res => callback(res.rows))
       .catch(e => {
         console.log(e)
         callback(e)

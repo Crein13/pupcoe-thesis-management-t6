@@ -227,6 +227,9 @@ app.post('/admin/add_faculty', function (req, res) {
     password: req.body.password,
     user_type: req.body.user_type,
     is_admin: req.body.is_admin
+  },
+  function(callback){
+    res.redirect('/admin/faculty');
   });
 });
 
@@ -260,6 +263,9 @@ app.post('/admin/add_student', function (req, res) {
     phone: req.body.phone,
     password: req.body.password,
     user_type: req.body.user_type
+  },
+  function(callback){
+    res.redirect('/admin/student');
   });
 });
 
