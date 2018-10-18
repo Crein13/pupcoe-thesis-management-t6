@@ -57,10 +57,10 @@ var actions = {
         console.log(e);
       })
     }, 
-     createClass: (classData,callback) => {
+    createClass: (classData,callback) => {
       const query =
       `INSERT INTO 
-        class (batch,section,adviser) 
+        classes (batch,section,adviser) 
        VALUES 
         ('${classData.batch}','${classData.section}','${classData.adviser}') 
        `;
