@@ -332,14 +332,14 @@ app.get('/faculty/class', function (req, res) {
     res.render('faculty/list_my_class', {
       class_id: req.body.class_id,
       batch: req.body.batch,
-      section. req.body.section,
+      section: req.body.section,
       classes: classList,
       layout: 'faculty'
     });
   });
 });
 
-app.get('/faculty/class/:class_id' function (req, res) {
+app.get('/faculty/class/:class_id', function (req, res) {
   faculty.classList({}, function (studentList) {
     res.render('faculty/class_detail', {
       student_number: req.body.student_number,
