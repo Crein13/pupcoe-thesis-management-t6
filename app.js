@@ -285,9 +285,28 @@ app.get('/admin/class', function (req, res) {
 });
 
 app.get('/admin/add_class', function (req, res) {
-  res.render('admin/add_class', {
-  })
-})
+  admin.facultyList({}, function(facultyList) {
+    res.render('admin/add_class', {
+    first_name: req.user.first_name,
+    last_name: req.user.last_name,
+    email: req.user.email,
+    phone: req.user.phone,
+    user_type: req.user.user_type,
+    faculties: facultyList
+    });
+  });
+});
+
+app.post('/admin/add_class', function (req, res) {
+  admin.createClass({
+    batch: req.body.batch,
+    section: req.body.section,
+    adviser: req.body.adviser
+  },
+  function(callback) {
+    res.redirect('/admin/class');
+  });
+});
 
 /* -------- GROUP --------- */
 app.get('/admin/group', function (req, res) {
@@ -309,9 +328,28 @@ app.get('/faculty', function (req, res) {
 
 /* -------- FACULTY --------- */
 app.get('/faculty/class', function (req, res) {
+  faculty.listByFacultyID({}, function(classList) {
+    res.render('faculty/list_my_class', {
+      class_id: req.body.class_id,
+      batch: req.body.batch,
+      section. req.body.section,
+      classes: classList,
+      layout: 'faculty'
+    });
+  });
+});
 
-  res.render('faculty/list_my_class', {
-    layout: 'faculty'
+app.get('/faculty/class/:class_id' function (req, res) {
+  faculty.classList({}, function (studentList) {
+    res.render('faculty/class_detail', {
+      student_number: req.body.student_number,
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      email: req.body.email,
+      phone: req.body.phone,
+      students: studentList,
+      layout: 'faculty'
+    });
   });
 });
 
@@ -322,9 +360,17 @@ app.get('/student', function (req, res) {
   });
 });
 
-app.get('/student/class', function (req, res) {
-  res.render('student/class', {
-    layout: 'student'
+app.get('/student/profile', function (req, res) {
+  student.studentProfle({}, function (profileList) {
+    res.render('student/student_profile', {
+      student_number: req.body.student_number,
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      email: req.body.email,
+      phone: req.body.phone,
+      students: profileList,
+      layout: 'student'
+    });
   });
 });
 

@@ -3,7 +3,7 @@ const db = require('../db/db.js')
 var actions = {
   classList: (filter,callback) => {
       const query =
-      `SELECT users.id as student_id, users.first_name, users.last_name, classes.id as class_id
+      `SELECT users.student_number as student_number, users.first_name, users.last_name, classes.id as class_id
       FROM classes 
       inner join users on users.id = classes.id
       WHERE classes.adviser = '${filter.id}' `;
@@ -90,6 +90,38 @@ var actions = {
       console.log(e)
       callback(e)
     })
+  }
+  studentList: (filter,callback) => {
+    const query =
+    `SELECT
+      *
+     FROM
+       users
+     WHERE
+       user_type = 'student' 
+      `;
+     db.query(query)
+    .then(res => callback(res.rows))
+    .catch(e => {
+      console.log(e);
+    });
+  }
+  listByFacultyID: (filter,callback) => {
+    const query =
+    `SELECT
+      id,
+      batch,
+      section
+    FROM
+      classes
+    WHERE
+      adviser = ${filter.id}
+    `;
+    db.query(query)
+    .then(res => callback(res.rows))
+    .catch(e => {
+      console.log(e);
+    });
   }
 }
 module.exports = actions

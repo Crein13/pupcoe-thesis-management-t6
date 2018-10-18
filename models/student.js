@@ -15,5 +15,20 @@ var actions = {
       callback(e)
     })
   }
+  studentProfile: (studentData, callback) => {
+    const query =
+    `SELECT
+      users.first_name AS first_name, users.last_name AS last_name, users.student_number AS student_number, users.phone AS phone, users.email AS email
+    FROM
+      users
+    WHERE
+    `;
+    db.query(query)
+    .then(res => callback(res))
+    .catch(e => {
+      console.log(e)
+      callback(e)
+    })
+  }
 }
 module.exports = actions

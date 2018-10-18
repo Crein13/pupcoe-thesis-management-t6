@@ -60,9 +60,9 @@ var actions = {
      createClass: (classData,callback) => {
       const query =
       `INSERT INTO 
-        class (section,adviser_id,acad_year) 
+        class (batch,section,adviser) 
        VALUES 
-        ('${classData.section}','${classData.adviserid}','${classData.acadyear}') 
+        ('${classData.batch}','${classData.section}','${classData.adviser}') 
        `;
        db.query(query)
       .then(res => callback(res.rows))
