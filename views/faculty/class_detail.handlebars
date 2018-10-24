@@ -3,8 +3,8 @@
 		<div class="responsive">
 			<div class="container col-sm-12 col-lg-12">
 				<table class="all_list" align="center">
-				<h1 class="left" style="margin-bottom:25pt display: inline-block">Students</h1>
-				<a href="/admin/add_student" style="display:inline-block; float:right">Add Student</a>
+				<h1 class="left" style="margin-bottom:25pt display: inline-block">My Students</h1>
+					<a style="display:inline-block; float:right" data-toggle="modal" data-target="#add-students" >Add Student</a>
 				<tr>
 					<th>Student Number</th>
 					<th>Name</th>
@@ -18,11 +18,38 @@
 					<td>{{this.first_name}} {{this.last_name}}</td>
 					<td>{{this.email}}</td>
 					<td>{{this.phone}}</td>
-					<td><a href="#">See More</a></td> ///admin/student/{{this.student_id}}
+					<td><a href="#">See More</a></td>
 				</tr>
 				{{/each}}
 				</table>
 			 </div>
-		</div>		
+		</div>
 	</div>
+</div>
+
+<div class="modal fade" id="add-students" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Select Students</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <select multiple id="student-list" data-class-id="{{classData.id}}">
+              {{#each allStudents}}
+                <option value='{{this.id}}'>
+                  <div><em>{{this.first_name}} {{this.last_name}}</em></div>
+                  <div>{{this.email}}</div>
+                </option>
+              {{/each}}
+          </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="save-class-students">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>

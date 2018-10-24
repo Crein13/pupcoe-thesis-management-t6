@@ -213,6 +213,8 @@ app.get('/admin/faculty', function (req, res) {
   });
 });
 
+
+
 app.get('/admin/add_faculty', function (req, res) {
   res.render('admin/add_faculty', {
   });
@@ -340,6 +342,7 @@ app.get('/faculty/class', function (req, res) {
 });
 
 app.get('/faculty/class/:class_id', function (req, res) {
+  var class_id = req.params.id;
   faculty.classList({}, function (studentList) {
     res.render('faculty/class_detail', {
       student_number: req.body.student_number,
