@@ -13,10 +13,10 @@ console.log('config db', config.db);
 var client = new Client(config.db);
 
 
-const db = require('./db/db.js')
-const admin = require('./models/admin.js')
-const faculty = require('./models/faculty.js')
-const student = require('./models/student.js')
+const db = require('./db/db.js');
+const admin = require('./models/admin.js');
+const faculty = require('./models/faculty.js');
+const student = require('./models/student.js');
 // connect to database
 client.connect()
   .then(function () {
