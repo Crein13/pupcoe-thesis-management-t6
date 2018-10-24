@@ -330,6 +330,7 @@ app.get('/faculty', function (req, res) {
 
 /* -------- FACULTY --------- */
 app.get('/faculty/class', function (req, res) {
+  var id = req.params.id;
   faculty.listByFacultyID({}, function(classList) {
     res.render('faculty/list_my_class', {
       class_id: req.user.id,
