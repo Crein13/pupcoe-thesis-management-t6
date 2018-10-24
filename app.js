@@ -15,8 +15,8 @@ var client = new Client(config.db);
 
 const db = require('./db/db.js')
 const admin = require('./models/admin.js')
-// const adviser = require('./models/adviser.js')
-// const student = require('./models/student.js')
+const faculty = require('./models/faculty.js')
+const student = require('./models/student.js')
 // connect to database
 client.connect()
   .then(function () {
