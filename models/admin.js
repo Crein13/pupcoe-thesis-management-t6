@@ -117,7 +117,7 @@ var actions = {
     INNER JOIN
       users
     ON
-      classes.id = users.id
+      classes.adviser = users.id
     WHERE
       users.user_type = 'faculty'
       `;
@@ -136,7 +136,7 @@ var actions = {
      FROM
        users
      WHERE
-       user_type = 'faculty' 
+       user_type = 'faculty'
       `;
      db.query(query)
     .then(res => callback(res.rows))
