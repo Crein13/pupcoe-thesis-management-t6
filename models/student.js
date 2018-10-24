@@ -14,7 +14,7 @@ var actions = {
       console.log(e)
       callback(e)
     })
-  }
+  },
   studentProfile: (studentData, callback) => {
     const query =
     `SELECT
