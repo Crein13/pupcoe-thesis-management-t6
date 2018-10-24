@@ -90,7 +90,7 @@ var actions = {
       console.log(e)
       callback(e)
     })
-  }
+  },
   studentList: (filter,callback) => {
     const query =
     `SELECT
@@ -105,7 +105,7 @@ var actions = {
     .catch(e => {
       console.log(e);
     });
-  }
+  },
   listByFacultyID: (filter,callback) => {
     const query =
     `SELECT
