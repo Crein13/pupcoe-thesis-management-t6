@@ -6,7 +6,6 @@
 				<h1 style="margin-bottom:25pt display: inline-block">Groups</h1>
 				<a href="/admin/add_class" style="display:inline-block; float:right">Add Group</a>
 				<tr>
-					<th>ID</th>
 					<th>Batch</th>
 					<th>Section</th>
 					<th>Year Level</th>
@@ -15,7 +14,6 @@
 				</tr>
 				{{#each rows}}
 				<tr>
-					<td>{{id}}</td>
 					<td>{{this.group_name}}</td>
 					<td>{{this.adviser_name}}</td>
 					<td><a href="#">See More</a></td> ///admin/group/{{this.id}}

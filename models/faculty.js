@@ -109,9 +109,7 @@ var actions = {
   listByFacultyID: (filter,callback) => {
     const query =
     `SELECT
-      id,
-      batch,
-      section
+      *
     FROM
       classes
     WHERE
