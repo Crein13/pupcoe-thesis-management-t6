@@ -332,7 +332,7 @@ app.get('/faculty', function (req, res) {
 app.get('/faculty/class', function (req, res) {
   faculty.listByFacultyID({}, function(classList) {
     res.render('faculty/list_my_class', {
-      class_id: req.body.class_id,
+      class_id: req.body.id,
       batch: req.body.batch,
       section: req.body.section,
       classes: classList,
