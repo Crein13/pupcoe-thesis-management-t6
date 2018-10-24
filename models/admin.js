@@ -63,7 +63,7 @@ var actions = {
         classes (batch,section,adviser) 
        VALUES 
         ('${classData.batch}','${classData.section}','${classData.adviser}') 
-       `;
+       RETURNING *`;
        db.query(query)
       .then(res => callback(res.rows))
       .catch(e => {
