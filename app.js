@@ -332,9 +332,8 @@ app.get('/faculty', function (req, res) {
 app.get('/faculty/class', function (req, res) {
   faculty.listByFacultyID({}, function(classList) {
     res.render('faculty/list_my_class', {
-      class_id: req.body.id,
-      batch: req.body.batch,
-      section: req.body.section,
+      batch: req.user.batch,
+      section: req.user.section,
       classes: classList,
       layout: 'faculty'
     });
@@ -345,11 +344,11 @@ app.get('/faculty/class/:class_id', function (req, res) {
   var class_id = req.params.id;
   faculty.classList({}, function (studentList) {
     res.render('faculty/class_detail', {
-      student_number: req.body.student_number,
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
-      email: req.body.email,
-      phone: req.body.phone,
+      student_number: req.user.student_number,
+      first_name: req.user.first_name,
+      last_name: req.user.last_name,
+      email: req.user.email,
+      phone: req.user.phone,
       students: studentList,
       layout: 'faculty'
     });
