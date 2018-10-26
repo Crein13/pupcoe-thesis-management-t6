@@ -330,10 +330,10 @@ app.get('/faculty', function (req, res) {
 
 /* -------- FACULTY --------- */
 app.get('/faculty/class', function (req, res) {
-  var id = req.params.id;
-  faculty.listByFacultyID({}, function(classList) {
+  var class_id;
+  faculty.listByFacultyID({id: req.user.id}, function(classList) {
     res.render('faculty/list_my_class', {
-      class_id: req.user.id,
+      class_id= classList,
       batch: req.user.batch,
       section: req.user.section,
       classes: classList,
