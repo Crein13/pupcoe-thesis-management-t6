@@ -1,0 +1,45 @@
+<div class="container">
+	<div class="row">	
+		<div class="responsive">
+			<div class="container col-sm-12 col-lg-12">
+				<table class="all_list" align="center">
+				<h1 style="margin-bottom:25pt display: inline-block">Classes</h1>
+				<a style="display:inline-block; float:right" data-toggle="modal" data-target="#send-proposal">Send Proposal</a>
+				<tr>
+					<th>Title</th>
+					<th>Status</th>
+					<th>Action</th>
+				</tr>
+				{{#each classes}}
+				<tr>
+					<td>{{this.thesis_title}}</td>
+					<td>{{this.thesis_status}}</td>
+					<td><a href="/student/send_proposal/{{this.id}}">See More</a></td>
+				</tr>
+				{{/each}}
+				</table>
+			 </div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="send-proposal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Thesis Proposal</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        	<input type="text" id="thesisTitle" name="thesisTitle" class="form-control" placeholder="Thesis Title" required autofocus>
+        	<textarea id="thesisAbstract" name="thesisAbstract" rows="20" cols="60" required></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="save-class-students">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
