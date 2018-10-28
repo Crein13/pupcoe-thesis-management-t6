@@ -5,8 +5,9 @@ var actions = {
       const query =
       `SELECT users.student_number as student_number, users.first_name, users.last_name, classes.id as class_id
       FROM classes 
-      inner join users on users.id = classes.id
-      WHERE classes.adviser = '${filter.id}' `;
+      inner join users on users.id = classes.adviser
+      WHERE classes.adviser = '${filter.id}' 
+      AND users.user_type = 'student' `;
        db.query(query)
       .then(res => callback(res.rows))
       .catch(e => {
