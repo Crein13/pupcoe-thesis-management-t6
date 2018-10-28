@@ -15,7 +15,7 @@ var actions = {
         callback(e)
       })
     },
-  noClassList: (filter,callback) => {
+  noClassList: (noClassData,callback) => {
       const query =
       `SELECT *
       FROM users
