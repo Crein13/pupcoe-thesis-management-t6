@@ -359,8 +359,7 @@ app.get('/faculty/class/:id', function (req, res) {
 
 app.post('/faculty/class/:id/addStudent', function (req, res) {
   faculty.insertStudent({
-    student_id: req.body.student_id,
-    class_id: req.body.class_id
+    student_id: req.body.student_id
   },
   function(callback) {
     res.redirect('/faculty/class/:id');
