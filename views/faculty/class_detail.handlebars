@@ -28,7 +28,7 @@
 </div>
 
 <div class="modal fade" id="add-students" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <form method="POST" action="/faculty/class/:id/addStudent">
+  <form method="POST" action="/faculty/class/:id/addStudent">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -38,7 +38,7 @@
         </button>
       </div>
 	      <div class="modal-body">
-	          <select multiple id="student-list" data-class-id="{{classData.id}}">
+	          <select style="width: 100%" multiple id="student-list" data-class-id="{{classData.id}}">
 	              {{#each noClass}}
 	                <option value='{{this.id}}'>
 	                	<div name="class_id" type="hidden" value="{{this.class_id}}"/>
@@ -51,9 +51,9 @@
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary" id="save-class-students">Save changes</button>
+	        <button type="submit" class="btn btn-primary" id="save-class-students">Save changes</button>
 	      </div>
     </div>
   </div>
-      </form>
+  </form>
 </div>
