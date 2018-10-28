@@ -344,6 +344,7 @@ app.get('/faculty/class/:class_id', function (req, res) {
   var class_id = req.params.id;
   faculty.classList({id: req.user.id}, function (studentList) {
     res.render('faculty/class_detail', {
+      class_id: class_id,
       student_number: req.user.student_number,
       first_name: req.user.first_name,
       last_name: req.user.last_name,
