@@ -3,7 +3,7 @@ const db = require('../db/db.js')
 var actions = {
   classList: (filter,callback) => {
       const query =
-      `SELECT users.student_number as student_number, users.first_name, users.last_name, classes.id as class_id
+      `SELECT users.id as student_id, users.student_number as student_number, users.first_name, users.last_name, classes.id as class_id
       FROM classes 
       inner join users on users.id = classes.adviser
       WHERE classes.adviser = '${filter.id}' 
@@ -50,9 +50,9 @@ var actions = {
   insertStudent: (userData, callback) => {
     const query =
     `INSERT INTO 
-      class_members (class_id,user_id) 
+      "classStudents" (class_id,student_id) 
      VALUES
-      ('${userData.classid}','${userData.userid}') 
+      ('${userData.classid}','${userData.studentid}') 
       `;
      db.query(query)
     .then(res => callback(res))

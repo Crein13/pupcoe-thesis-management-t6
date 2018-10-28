@@ -36,20 +36,24 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-          <select multiple id="student-list" data-class-id="{{classData.id}}">
-              {{#each noClass}}
-                <option value='{{this.id}}'>
-                  <div><em>{{this.first_name}} {{this.last_name}}</em></div>
-                  <div>{{this.email}}</div>
-                </option>
-              {{/each}}
-          </select>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="save-class-students">Save changes</button>
-      </div>
+      <form method="POST" action="/faculty/class/:id/addStudent">
+	      <div class="modal-body">
+	          <select multiple id="student-list" data-class-id="{{classData.id}}">
+	              {{#each noClass}}
+	                <option value='{{this.id}}'>
+	                	<input name="class_id" type="hidden" value="{{this.class_id}}"/>
+	                	<input type="hidden" name="student_id" value="{{this.student_id}}" />
+	                  <div>{{this.student_number}}</div>
+	                  <div><em>{{this.first_name}} {{this.last_name}}</em></div>
+	                </option>
+	              {{/each}}
+	          </select>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-primary" id="save-class-students">Save changes</button>
+	      </div>
+      </form>
     </div>
   </div>
 </div>

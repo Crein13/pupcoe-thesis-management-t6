@@ -357,6 +357,13 @@ app.get('/faculty/class/:id', function (req, res) {
   });
 });
 
+app.post('/faculty/class/:id/addStudent', function (req, res) {
+  faculty.insertStudent({
+    class_id: req.body.class_id,
+    student_id: req.body.student_id
+  })
+})
+
 /* ------------------------ STUDENT PAGE ------------------------ */
 app.get('/student', function (req, res) {
   res.render('student/dashboard', {
@@ -386,5 +393,5 @@ app.get('/student/group', function (req, res) {
 
 // Server
 app.listen(port, function () {
-  console.log('App Started on ' + port);
+  console.log('App Started on port ' + port);
 });
