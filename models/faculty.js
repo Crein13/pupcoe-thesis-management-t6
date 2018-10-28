@@ -17,8 +17,9 @@ var actions = {
     },
   noClassList: (noClassData,callback) => {
       const query =
-      `SELECT *
-      FROM users
+      `SELECT SELECT users.id as student_id, users.student_number as student_number, users.first_name, users.last_name, classes.id as class_id
+      FROM users 
+      inner join users on users.id = classes.adviser
       WHERE user_type = 'student' AND id NOT IN (SELECT DISTINCT student_id FROM "classStudents")`;
        db.query(query)
       .then(res => callback(res.rows))
