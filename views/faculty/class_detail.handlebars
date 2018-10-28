@@ -38,10 +38,9 @@
         </button>
       </div>
 	      <div class="modal-body">
-	          <select style="width: 100%" multiple id="student-list" data-class-id="{{classData.id}}">
+	          <select style="width: 100%" multiple id="student-list" name="class_id" data-class-id="{{classData.id}}">
 	              {{#each noClass}}
-	                <option value='{{this.id}}'>
-	                  <div type="hidden">{{this.student_id}}</div>
+	                <option name="student_id" value='{{this.id}}'>
 	                  <div>{{this.student_number}}</div>
 	                  <div><em>{{this.first_name}} {{this.last_name}}</em></div>
 	                </option>
