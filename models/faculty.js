@@ -52,7 +52,7 @@ var actions = {
     `INSERT INTO 
       "classStudents" (class_id,student_id) 
      VALUES
-      ('${userData.classid}','${userData.studentid}') 
+      ('${userData.class_id}','${userData.student_id}') 
       `;
      db.query(query)
     .then(res => callback(res))
