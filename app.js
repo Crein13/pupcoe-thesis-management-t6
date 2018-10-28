@@ -342,7 +342,7 @@ app.get('/faculty/class', function (req, res) {
 
 app.get('/faculty/class/:class_id', function (req, res) {
   // faculty.classId(req.params.id)
-  faculty.classList({class_id = req.user.id}, function (studentList) {
+  faculty.classList({class_id: req.user.id}, function (studentList) {
     res.render('faculty/class_detail', {
       student_number: req.user.student_number,
       first_name: req.user.first_name,
