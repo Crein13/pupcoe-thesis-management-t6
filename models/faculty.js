@@ -15,6 +15,18 @@ var actions = {
         callback(e)
       })
     },
+  noClassList: (filter,callback) => {
+      const query =
+      `SELECT *
+      FROM users
+      WHERE user_type = 'student' AND id NOT IN (SELECT DISTINCT student_id FROM "classStudents")`;
+       db.query(query)
+      .then(res => callback(res.rows))
+      .catch(e => {
+        console.log(e)
+        callback(e)
+      })
+    },
   classId: (filter,callback) => {
       const query =
       `select id from class where adviser = ${filter.id} `;
