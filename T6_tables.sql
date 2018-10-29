@@ -13,7 +13,7 @@ CREATE TABLE "users" (
   "is_admin" boolean default 'f' NOT NULL
 );
 
-INSERT INTO users(first_name, last_name, email, password, phone, image_url, user_type, is_admin)
+INSERT INTO users (first_name, last_name, email, password, phone, image_url, user_type, is_admin)
   VALUES (
     'Benjamin',
     'Matias',

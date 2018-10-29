@@ -4,19 +4,19 @@
 			<div class="container col-sm-12 col-lg-12">
 				<table class="all_list" align="center">
 				<h1 style="margin-bottom:25pt display: inline-block">Groups</h1>
-				<a href="/admin/add_class" style="display:inline-block; float:right">Add Group</a>
+				<a href="/admin/add_group" style="display:inline-block; float:right">Add Group</a>
 				<tr>
 					<th>Batch</th>
-					<th>Section</th>
-					<th>Year Level</th>
+					<th>Group Name</th>
 					<th>Adviser</th>
 					<th>Action</th>
 				</tr>
 				{{#each rows}}
 				<tr>
+					<td>{{this.batch}}</td>
 					<td>{{this.group_name}}</td>
 					<td>{{this.adviser_name}}</td>
-					<td><a href="#">See More</a></td> ///admin/group/{{this.id}}
+					<td><a href="admin/group/{{this.id}}">See More</a></td>
 				</tr>
 				{{/each}}
 				</table>
