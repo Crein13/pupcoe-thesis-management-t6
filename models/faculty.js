@@ -47,21 +47,6 @@ var actions = {
         callback(e)
       })
     },
-  insertStudent: (userData, callback) => {
-    const query =
-    `INSERT INTO 
-      "classStudents" (class_id, student_id)
-     VALUES
-      ('${userData.class_id}', '${userData.student_id}')
-      RETURNING *
-      `;
-     db.query(query)
-    .then(res => callback(res))
-    .catch(e => {
-      console.log(e)
-      callback(e)
-    })
-  },
     createGroup: (groupData,callback) => {
     const query =
     `INSERT INTO 

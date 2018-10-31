@@ -310,6 +310,35 @@ app.post('/admin/add_class', function (req, res) {
   });
 });
 
+app.get('/admin/class/:id', function (req, res) {
+  admin.classList({id: req.user.id}, function (studentList) {
+    admin.noClassList({}, function  (noClassList) {
+      res.render('admin/class_detail', {
+        id: req.user.id,
+        student_number: req.user.student_number,
+        first_name: req.user.first_name,
+        last_name: req.user.last_name,
+        email: req.user.email,
+        phone: req.user.phone,
+        noClass: noClassList,
+        students: studentList,
+      });
+    });
+  });
+});
+
+app.post('/admin/class/:id/addStudent', function (req, res) {
+  var class_id = req.params.id;
+  console.log(class_id);
+  admin.insertStudent({
+    student_id: req.body.student_id,
+    class_id: class_id
+  },
+  function(callback) {
+    res.redirect('/admin/class');
+  });
+});
+
 /* -------- GROUP --------- */
 app.get('/admin/group', function (req, res) {
   res.render('admin/list_group', {
@@ -342,7 +371,6 @@ app.get('/faculty/class', function (req, res) {
 
 app.get('/faculty/class/:id', function (req, res) {
   faculty.classList({id: req.user.id}, function (studentList) {
-    faculty.noClassList({}, function  (noClassList) {
       res.render('faculty/class_detail', {
         id: req.user.id,
         student_number: req.user.student_number,
@@ -354,21 +382,9 @@ app.get('/faculty/class/:id', function (req, res) {
         students: studentList,
         layout: 'faculty'
       });
-    });
   });
 });
 
-app.post('/faculty/class/:id/addStudent', function (req, res) {
-  var class_id = req.params.id;
-  console.log('params: ', class_id);
-  faculty.insertStudent({
-    student_id: req.body.student_id,
-    class_id: class_id
-  },
-  function(callback) {
-    res.redirect('/faculty/class');
-  });
-});
 
 /* ------------------------ STUDENT PAGE ------------------------ */
 app.get('/student', function (req, res) {
