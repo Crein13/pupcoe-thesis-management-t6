@@ -273,7 +273,7 @@ app.post('/admin/add_student', function (req, res) {
 
 /* -------- CLASS --------- */
 app.get('/admin/class', function (req, res) {
-  admin.classList({}, function(classList) {
+  admin.classList({ }, function(classList) {
     res.render('admin/list_class', {
     class_id: req.user.id,
     batch: req.user.batch,
@@ -329,8 +329,6 @@ app.get('/admin/class/:id', function (req, res) {
 });
 
 app.post('/admin/class/:id/addStudent', function (req, res) {
-  var class_id = req.params.id;
-  console.log(class_id);
   admin.insertStudent({
     student_id: req.body.student_id,
     class_id: class_id
