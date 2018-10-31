@@ -50,9 +50,9 @@ var actions = {
   insertStudent: (userData, callback) => {
     const query =
     `INSERT INTO 
-      "classStudents" (student_id)
+      "classStudents" (class_id, student_id)
      VALUES
-      ('${userData.student_id}')
+      ('${userData.class_id}', '${userData.student_id}')
       RETURNING *
       `;
      db.query(query)
