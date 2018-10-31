@@ -312,6 +312,7 @@ app.post('/admin/add_class', function (req, res) {
 
 app.get('/admin/class/:id', function (req, res) {
   admin.classId({id: req.user.id}, function (classId) {
+    id: req.user.id,
     admin.classStudentList({id: req.body.adviser}, function (classStudentList) {
       admin.noClassList({}, function  (noClassList) {
         res.render('admin/class_detail', {
