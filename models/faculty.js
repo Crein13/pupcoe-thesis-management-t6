@@ -29,7 +29,7 @@ var actions = {
     },
   classId: (filter,callback) => {
       const query =
-      `select id from class where adviser = ${filter.id} `;
+      `select id from classes where adviser = ${filter.id} `;
        db.query(query)
       .then(res => callback(res.rows))
       .catch(e => {

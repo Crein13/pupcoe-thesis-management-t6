@@ -122,28 +122,28 @@ var actions = {
     .then(res => callback(res.rows[0]))
       .catch(e => callback(e));
     },
-    // classList: (filter,callback) => {
-    // const query =
-    // `SELECT
-    //   classes.id, classes.batch, classes.section,
-    //   users.first_name, users.last_name
-    // FROM
-    //   classes
-    // INNER JOIN
-    //   users
-    // ON
-    //   classes.adviser = users.id
-    // WHERE
-    //   users.user_type = 'faculty'
-    //   `;
-    //  db.query(query)
-    // .then(res => callback(res.rows))
-    // .catch(e => {
-    //   console.log(e)
-    //   callback(e)
-    // });
-    // },
     classList: (filter,callback) => {
+    const query =
+    `SELECT
+      classes.id, classes.batch, classes.section,
+      users.first_name, users.last_name
+    FROM
+      classes
+    INNER JOIN
+      users
+    ON
+      classes.adviser = users.id
+    WHERE
+      users.user_type = 'faculty'
+      `;
+     db.query(query)
+    .then(res => callback(res.rows))
+    .catch(e => {
+      console.log(e)
+      callback(e)
+    });
+    },
+    classStudentList: (filter,callback) => {
       const query =
       `SELECT users.id as student_id, users.student_number as student_number, users.first_name, users.last_name, classes.id as class_id
       FROM classes 
@@ -162,6 +162,16 @@ var actions = {
       `SELECT *
       FROM users
       WHERE user_type = 'student' AND users.id NOT IN (SELECT DISTINCT student_id FROM "classStudents")`;
+       db.query(query)
+      .then(res => callback(res.rows))
+      .catch(e => {
+        console.log(e)
+        callback(e)
+      })
+    },
+    classId: (filter,callback) => {
+      const query =
+      `select id from classes where adviser = ${filter.id} `;
        db.query(query)
       .then(res => callback(res.rows))
       .catch(e => {

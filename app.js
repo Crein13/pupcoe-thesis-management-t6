@@ -311,17 +311,18 @@ app.post('/admin/add_class', function (req, res) {
 });
 
 app.get('/admin/class/:id', function (req, res) {
-  admin.classList({id: req.user.id}, function (studentList) {
-    admin.noClassList({}, function  (noClassList) {
-      res.render('admin/class_detail', {
-        id: req.user.id,
-        student_number: req.user.student_number,
-        first_name: req.user.first_name,
-        last_name: req.user.last_name,
-        email: req.user.email,
-        phone: req.user.phone,
-        noClass: noClassList,
-        students: studentList,
+  admin.classId({id: req.user.id}, function (classId) {
+    admin.classStudentList({}, function (classStudentList) {
+      admin.noClassList({}, function  (noClassList) {
+        res.render('admin/class_detail', {
+          student_number: req.user.student_number,
+          first_name: req.user.first_name,
+          last_name: req.user.last_name,
+          email: req.user.email,
+          phone: req.user.phone,
+          noClass: noClassList,
+          students: classStudentList
+        });
       });
     });
   });
