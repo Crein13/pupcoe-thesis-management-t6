@@ -350,7 +350,6 @@ app.get('/faculty/class/:id', function (req, res) {
         last_name: req.user.last_name,
         email: req.user.email,
         phone: req.user.phone,
-        class_id: req.user.class_id,
         noClass: noClassList,
         students: studentList,
         layout: 'faculty'
@@ -360,12 +359,14 @@ app.get('/faculty/class/:id', function (req, res) {
 });
 
 app.post('/faculty/class/:id/addStudent', function (req, res) {
+  var class_id = req.params.id;
+  console.log('params: ', class_id);
   faculty.insertStudent({
     student_id: req.body.student_id,
-    class_id: req.params.id
+    class_id: class_id
   },
   function(callback) {
-    res.redirect('/faculty/class/:id');
+    res.redirect('/faculty/class');
   });
 });
 
