@@ -125,7 +125,7 @@ var actions = {
     classList: (filter,callback) => {
     const query =
     `SELECT
-      classes.id, classes.batch, classes.section,
+      classes.id, classes.batch, classes.section, classes.adviser,
       users.first_name, users.last_name
     FROM
       classes
@@ -148,7 +148,7 @@ var actions = {
       `SELECT users.id as student_id, users.student_number as student_number, users.first_name, users.last_name, classes.id as class_id
       FROM classes 
       inner join users on users.id = classes.adviser
-      WHERE classes.adviser = '${filter.adviser}' 
+      WHERE classes.adviser = '${filter.id}' 
       AND users.user_type = 'student' `;
        db.query(query)
       .then(res => callback(res.rows))
