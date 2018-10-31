@@ -312,7 +312,6 @@ app.post('/admin/add_class', function (req, res) {
 
 app.get('/admin/class/:id', function (req, res) {
   admin.classId({id: req.user.id}, function (classId) {
-    id: req.user.id,
     admin.classStudentList({id: req.body.adviser}, function (classStudentList) {
       admin.noClassList({}, function  (noClassList) {
         res.render('admin/class_detail', {
@@ -346,9 +345,28 @@ app.get('/admin/group', function (req, res) {
 });
 
 app.get('/admin/add_group', function (req, res) {
-  res.render('admin/add_group', {
-  })
-})
+  admin.facultyList({}, function(facultyList) {
+    res.render('admin/add_group', {
+    first_name: req.user.first_name,
+    last_name: req.user.last_name,
+    email: req.user.email,
+    phone: req.user.phone,
+    user_type: req.user.user_type,
+    faculties: facultyList
+    });
+  });
+});
+
+app.post('/admin/add_class', function (req, res) {
+  admin.createClass({
+    batch: req.body.batch,
+    group_name: req.body.group_name,
+    adviser_id: req.body.adviser_id
+  },
+  function(callback) {
+    res.redirect('/admin/group');
+  });
+});
 
 /* ------------------------ FACULTY PAGE ------------------------ */
 app.get('/faculty', function (req, res) {

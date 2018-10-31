@@ -85,6 +85,19 @@ var actions = {
         console.log(e);
       })
     },
+    createGroup: (groupData,callback) => {
+      const query =
+      `INSERT INTO 
+        group (batch,group_name,adviser_id) 
+       VALUES 
+        ('${group.batch}','${group.group_name}','${group.adviser_id}') 
+       RETURNING *`;
+       db.query(query)
+      .then(res => callback(res.rows))
+      .catch(e => {
+        console.log(e);
+      })
+    },
     insertStudent: (userData,callback) => {
     const query =
     `INSERT INTO 
@@ -145,7 +158,11 @@ var actions = {
     },
     classStudentList: (filter,callback) => {
       const query =
-      `SELECT users.id as student_id, users.student_number as student_number, users.first_name, users.last_name, classes.id as class_id
+      `SELECT users.id as student_id,
+      users.student_number as student_number,
+      users.first_name,
+      users.last_name,
+      classes.id as class_id
       FROM classes 
       inner join users on users.id = classes.adviser
       WHERE classes.adviser = '${filter.id}' 
