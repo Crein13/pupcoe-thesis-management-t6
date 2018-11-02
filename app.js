@@ -326,7 +326,7 @@ app.post('/admin/add_group', function (req, res) {
   admin.createClass({
     batch: req.body.batch,
     group_name: req.body.group_name,
-    adviser_id: req.body.adviser_id
+    adviser_id: req.body.adviser
   },
   function(callback) {
     res.redirect('/admin/group');
