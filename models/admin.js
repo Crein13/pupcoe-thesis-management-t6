@@ -96,9 +96,9 @@ var actions = {
     createGroup: (groupData,callback) => {
       const query =
       `INSERT INTO 
-        group (batch,group_name,adviser_id) 
+        "group" (batch,group_name,adviser_id) 
        VALUES 
-        ('${group.batch}','${group.group_name}','${group.adviser_id}') 
+        ('${groupData.batch}','${groupData.group_name}','${groupData.adviser_id}') 
        RETURNING *`;
        db.query(query)
       .then(res => callback(res.rows))
@@ -143,6 +143,23 @@ var actions = {
       classes.adviser = users.id
     WHERE
       users.user_type = 'faculty'
+      `;
+     db.query(query)
+    .then(res => callback(res.rows))
+    .catch(e => {
+      console.log(e)
+      callback(e)
+    });
+    },
+    groupList: (filter,callback) => {
+    const query =
+    `SELECT
+      "group".id, "group".batch, "group".group_name, "group".adviser_id,
+      users.first_name, users.last_name
+    FROM
+      "group"
+    INNER JOIN users ON adviser_id = users.id
+    WHERE users.user_type = 'faculty'
       `;
      db.query(query)
     .then(res => callback(res.rows))

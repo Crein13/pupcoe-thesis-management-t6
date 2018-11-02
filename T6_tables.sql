@@ -42,7 +42,7 @@ CREATE TABLE "classStudents" (
 CREATE TABLE "group" (
   "id" SERIAL PRIMARY KEY,
   "batch" VARCHAR(4) NOT NULL,
-  "group_name" VARCHAR(2) NOT NULL,
+  "group_name" VARCHAR(80) NOT NULL,
   "adviser_id" INT REFERENCES users(id)
 );
 

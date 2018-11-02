@@ -305,7 +305,14 @@ app.post('/admin/class/addStudent', function (req, res) {
 
 /* -------- GROUP --------- */
 app.get('/admin/group', isAdmin, function (req, res) {
-  res.render('admin/list_group', {
+  admin.groupList({}, function (groupList) {
+    res.render('admin/list_group', {
+      batch: req.user.batch,
+      group_name: req.user.group_name,
+      first_name: req.user.first_name,
+      last_name: req.user.last_name,
+      group: groupList
+    });
   });
 });
 
@@ -323,10 +330,10 @@ app.get('/admin/add_group', isAdmin, function (req, res) {
 });
 
 app.post('/admin/add_group', function (req, res) {
-  admin.createClass({
+  admin.createGroup({
     batch: req.body.batch,
     group_name: req.body.group_name,
-    adviser_id: req.body.adviser
+    adviser_id: req.body.adviser_id
   },
   function(callback) {
     res.redirect('/admin/group');
