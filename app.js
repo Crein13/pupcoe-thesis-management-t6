@@ -322,7 +322,7 @@ app.get('/admin/add_group', isAdmin, function (req, res) {
   });
 });
 
-app.post('/admin/add_class', function (req, res) {
+app.post('/admin/add_group', function (req, res) {
   admin.createClass({
     batch: req.body.batch,
     group_name: req.body.group_name,
