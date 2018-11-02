@@ -285,8 +285,10 @@ app.get('/admin/class/:id', isAdmin, function (req, res) {
           last_name: req.user.last_name,
           email: req.user.email,
           phone: req.user.phone,
+          class_id: req.user.class_id,
           noClass: noClassList,
-          students: classStudentList
+          students: classStudentList,
+          class: classStudentList
         });
       });
     });
@@ -296,7 +298,7 @@ app.get('/admin/class/:id', isAdmin, function (req, res) {
 app.post('/admin/class/addStudent', function (req, res) {
   admin.insertStudent({
     student_id: req.body.student_id,
-    class_id: class_id
+    class_id: req.body.class_id
   },
   function(callback) {
     res.redirect('/admin/class');
