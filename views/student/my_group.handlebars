@@ -1,0 +1,21 @@
+<div class="container">
+	<div class="row">	
+		<div class="responsive">
+			<div class="container col-sm-12 col-lg-12">
+				<table class="all_list" align="center">
+				<h1 style="margin-bottom:25pt display: inline-block">My Classes</h1>
+				<tr>
+					<th>Student Number</th>
+					<th>Member Name</th>
+				</tr>
+				{{#each group}}
+				<tr>
+					<td>{{student_number}}</td>
+					<td>{{first_name}} {{last_name}}</td>
+				</tr>
+				{{/each}}
+				</table>
+			 </div>
+		</div>
+	</div>
+</div>

@@ -76,92 +76,57 @@ passport.deserializeUser(function(id, cb) {
 });
 
 function isAdmin(req, res, next) {
-   if (req.isAuthenticated()) {
-      console.log(req.user);
-    role = req.user.isAdmin
-    console.log(role)
-    if (req.user.isAdmin == true) {
-      req.session.admin == true;
+  if (req.isAuthenticated()) {
+    admin.getUserData({id: req.user.id}, function(user){
+      role = user[0].user_type;
+      isAdmin = user[0].is_admin;
+      console.log('role:',role);
+      console.log('isAdmin:',isAdmin);
+      if ((role == 'faculty') && (isAdmin === true)) {
         return next();
-    }
-    else{
-      res.send(404);
-    }
+      }
+      else{
+        res.redirect('/');
+      }
+    });
   }
-  else{
-res.redirect('/admin');
+   else{
+    res.redirect('/');
   }
 }
-function isFaculty(req, res, next) {
-   if (req.isAuthenticated()) {
-  admin.checkIfCommittee(req.user.id,function(result){
-    if(result.rowCount > 0){
-      req.session.committee = true;
-    }
-  });
-  admin.checkIfAdviser(req.user.id,function(result){
-    if(result.rowCount > 0){
-      req.session.adviser = true;
-    }
-  });
-  admin.getById(req.user.id,function(user){
-    req.session.admin = req.user.isAdmin;
-    role = req.user.user_type  
-    console.log('role:',role);
-    if (role == 'faculty') { 
-    console.log(req.session.admin)   
+
+function isFaculty (req, res, next) {
+  if (req.isAuthenticated()) {
+    admin.getUserData({id: req.user.id}, function(user){
+      role = user[0].user_type;
+      isAdmin = user[0].is_admin;
+      console.log('role:',role);
+      console.log('isAdmin:',isAdmin);
+      if ((role == 'faculty') && (isAdmin === false)) {
         return next();
-    }
-    else{
-     res.send(404);
-    }
-
-  });
-
+      }
+      else{
+        res.redirect('/');
+      }
+    });
   }
   else{
-res.redirect('/faculty');
-}
-}
-
-function isAdviser(req,res,next){
-  if (req.session.adviser != true){
-    res.send(404)
-  }
-  else{
-    return next();
+    res.redirect('/');
   }
 }
 
-function isStudent(req, res, next) {
-   if (req.isAuthenticated()) {
-  admin.getGroupId(req.user.id,function(user){
-    req.session.group_id = user.group_id;
-    console.log(req.session.group_id)
-    role = req.user.user_type;
-    if (role == 'student') {
-        return next();
-    }
-    else{
-      res.send(404);
-    }
-  });
-  }
-  else{
-    res.redirect('/student');
-  }
-}
-
-function isGuest(req, res, next) {
-   if (req.isAuthenticated()) {
-    role = req.user.user_type;
-    console.log('role:',role);
-    if (role == 'guest') {
-      return next();
-    }
-    else{
-      res.send(404);
-    }
+function isStudent (req, res, next) {
+  if (req.isAuthenticated()) {
+    admin.getUserData({id: req.user.id}, function(user){
+      role = user[0].user_type;
+      console.log('role:',role);
+      if (role == 'student') {
+          return next();
+      }
+      else{
+        res.redirect('/');
+      }
+    });
   }
   else{
     res.redirect('/');
@@ -194,13 +159,13 @@ app.post('/login',
 
 
 /* ------------------------ ADMIN PAGE ------------------------ */
-app.get('/admin', function (req, res) {
+app.get('/admin', isAdmin, function (req, res) {
   res.render('admin/dashboard', {
   });
 });
 
 /* -------- FACULTY --------- */
-app.get('/admin/faculty', function (req, res) {
+app.get('/admin/faculty', isAdmin, function (req, res) {
   admin.facultyList({}, function(facultyList) {
     res.render('admin/list_faculty', {
     first_name: req.user.first_name,
@@ -215,7 +180,7 @@ app.get('/admin/faculty', function (req, res) {
 
 
 
-app.get('/admin/add_faculty', function (req, res) {
+app.get('/admin/add_faculty', isAdmin, function (req, res) {
   res.render('admin/add_faculty', {
   });
 });
@@ -236,7 +201,7 @@ app.post('/admin/add_faculty', function (req, res) {
 });
 
 /* -------- STUDENT --------- */
-app.get('/admin/student', function (req, res) {
+app.get('/admin/student', isAdmin, function (req, res) {
   admin.studentList({}, function(studentList) {
     res.render('admin/list_student', {
     student_id: req.user.id,
@@ -251,7 +216,7 @@ app.get('/admin/student', function (req, res) {
   });
 });
 
-app.get('/admin/add_student', function (req, res) {
+app.get('/admin/add_student', isAdmin, function (req, res) {
   res.render('admin/add_student', {
   });
 });
@@ -272,7 +237,7 @@ app.post('/admin/add_student', function (req, res) {
 });
 
 /* -------- CLASS --------- */
-app.get('/admin/class', function (req, res) {
+app.get('/admin/class', isAdmin, function (req, res) {
   admin.classList({ }, function(classList) {
     res.render('admin/list_class', {
     class_id: req.user.id,
@@ -286,7 +251,7 @@ app.get('/admin/class', function (req, res) {
   });
 });
 
-app.get('/admin/add_class', function (req, res) {
+app.get('/admin/add_class', isAdmin, function (req, res) {
   admin.facultyList({}, function(facultyList) {
     res.render('admin/add_class', {
     first_name: req.user.first_name,
@@ -310,9 +275,9 @@ app.post('/admin/add_class', function (req, res) {
   });
 });
 
-app.get('/admin/class/:id', function (req, res) {
+app.get('/admin/class/:id', isAdmin, function (req, res) {
   admin.classId({id: req.user.id}, function (classId) {
-    admin.classStudentList({id: req.body.adviser}, function (classStudentList) {
+    admin.classStudentList({id: req.user.id}, function (classStudentList) {
       admin.noClassList({}, function  (noClassList) {
         res.render('admin/class_detail', {
           student_number: req.user.student_number,
@@ -328,7 +293,7 @@ app.get('/admin/class/:id', function (req, res) {
   });
 });
 
-app.post('/admin/class/:id/addStudent', function (req, res) {
+app.post('/admin/class/addStudent', function (req, res) {
   admin.insertStudent({
     student_id: req.body.student_id,
     class_id: class_id
@@ -339,12 +304,12 @@ app.post('/admin/class/:id/addStudent', function (req, res) {
 });
 
 /* -------- GROUP --------- */
-app.get('/admin/group', function (req, res) {
+app.get('/admin/group', isAdmin, function (req, res) {
   res.render('admin/list_group', {
   });
 });
 
-app.get('/admin/add_group', function (req, res) {
+app.get('/admin/add_group', isAdmin, function (req, res) {
   admin.facultyList({}, function(facultyList) {
     res.render('admin/add_group', {
     first_name: req.user.first_name,
@@ -369,14 +334,14 @@ app.post('/admin/add_class', function (req, res) {
 });
 
 /* ------------------------ FACULTY PAGE ------------------------ */
-app.get('/faculty', function (req, res) {
+app.get('/faculty', isFaculty, function (req, res) {
   res.render('faculty/dashboard', {
     layout: 'faculty'
   });
 });
 
 /* -------- FACULTY --------- */
-app.get('/faculty/class', function (req, res) {
+app.get('/faculty/class', isFaculty, function (req, res) {
   faculty.listByFacultyID({id:req.user.id}, function(classList) {
     res.render('faculty/list_my_class', {
       batch: req.user.batch,
@@ -387,7 +352,7 @@ app.get('/faculty/class', function (req, res) {
   });
 });
 
-app.get('/faculty/class/:id', function (req, res) {
+app.get('/faculty/class/:id', isFaculty, function (req, res) {
   faculty.classList({id: req.user.id}, function (studentList) {
       res.render('faculty/class_detail', {
         id: req.user.id,
@@ -404,30 +369,36 @@ app.get('/faculty/class/:id', function (req, res) {
 
 
 /* ------------------------ STUDENT PAGE ------------------------ */
-app.get('/student', function (req, res) {
-  res.render('student/dashboard', {
-    layout: 'student'
-  });
-});
-
-app.get('/student/profile', function (req, res) {
-  student.studentProfle({}, function (profileList) {
-    res.render('student/student_profile', {
-      student_number: req.body.student_number,
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
-      email: req.body.email,
-      phone: req.body.phone,
-      students: profileList,
+app.get('/student', isStudent, function (req, res) {
+  student.studentProfile({id: req.user.id}, function (profileList) {
+    res.render('student/dashboard', {
+      student_number: req.user.student_number,
+      first_name: req.user.first_name,
+      last_name: req.user.last_name,
+      email: req.user.email,
+      phone: req.user.phone,
+      student: profileList,
       layout: 'student'
     });
   });
 });
 
-app.get('/student/group', function (req, res) {
+app.get('/student/group', isStudent, function (req, res) {
+  student.studentGroup({id: req.user.id}, function (studentGroup) {
   res.render('student/group', {
+    student_number: req.user.student_number,
+    first_name: req.user.first_name,
+    last_name: req.user.last_name,
+    group: studentGroup,
     layout: 'student'
+    });
   });
+});
+
+app.get('/student/thesis', isStudent, function (req, res) {
+  res.render('student/list_thesis', {
+    layout: 'student'
+  })
 });
 
 // Server

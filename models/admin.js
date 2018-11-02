@@ -1,6 +1,14 @@
 const db = require('../db/db.js')
 
 var actions = {
+  getUserData: (id,callback) => {
+      const query =  `
+          select * from users where id = '${id.id}'
+      `;
+      db.query(query,(req,result)=>{
+        callback(result.rows);
+      });
+    },
   createFaculty: (facultyData, callback) => {
     const query =
     `INSERT INTO
@@ -97,19 +105,6 @@ var actions = {
       .catch(e => {
         console.log(e);
       })
-    },
-    insertStudent: (userData,callback) => {
-    const query =
-    `INSERT INTO 
-      class_members (class_id,user_id) 
-     VALUES 
-      ('${userData.classid}','${userData.userid}') 
-      `;
-     db.query(query)
-    .then(res => callback(res))
-    .catch(e => {
-      console.log(e);
-    });
     },
     getByEmail: (email,callback) => {
     const query =

@@ -1,19 +1,15 @@
-	<div class="container">
-	<div class="jumbotron mt-2">
-		<h1 class="mt-0 mb-5 text-center">{{title}}</h1>
-		<div class="row mx-4">
-			{{#each data}}
-			<div class="col-lg-6 col-md-6 col-sm-12 mb-6 mx-auto">
-				<div class="card bg-secondary text-light center">
-					<a href="/products/{{this.product_id}}" class="text-light">
-							<img class="card-img-top" src="{{this.picture}}" height="250px" width="300px">
-							<div class="">
-							<h6 class="card-title text-center my-3">{{this.brand}} - {{this.product_name}}</h6>
-						</div>
-					</a>
-				</div>
-			</div>
-			{{/each}}
+<div class="container">
+	<div class="row">	
+		<div class="responsive">
+			<div class="container col-sm-12 col-lg-12">
+				<table class="all_list" align="center">
+				{{#each student}}
+				<h1>{{this.first_name}} {{this.last_name}}</h1>
+				<h3> {{this.student_number}}</h3>
+				<h3> {{this.email}}</h3>
+				<h3> {{this.phone}}</h3>
+				{{/each}}
+			 </div>
 		</div>
 	</div>
 </div>
